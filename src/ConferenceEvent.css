@@ -141,6 +141,7 @@ navbar {
     /* background-color: red; */
     width:200px ;
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
