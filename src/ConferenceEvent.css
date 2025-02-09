@@ -1,0 +1,78 @@
+.navbar_event_conference {
+    position: fixed;
+    top: 1px;
+    z-index: 99;
+}
+
+.company_logo {
+    font-size: 30px;
+    color: #EFC16B;
+    font-weight: 700;
+}
+
+.nav_links {
+    display: flex;
+    gap: 170px;
+}
+
+.left_navbar {
+    width: 60vw;
+    display: flex;
+    gap: 180px;
+  
+}
+
+.nav_links a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+    font-size: 25px;
+}
+  
+.nav_links a:hover {
+    color: #ff9900;
+}
+
+.main_container {
+    display: flex;    
+}
+
+.items-information {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+    margin-top: 100px;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.venue_container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: -180px;
+    font-size: 24px;
+}
+
+.text h1 {
+    width: 900px;
+    font-size: 40px;
+    background-color: #133b6a;
+    color: white;
+    width:990px;
+    height: 70px;
+    margin-left: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
