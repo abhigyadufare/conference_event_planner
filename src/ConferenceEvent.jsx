@@ -26,15 +26,35 @@ const MyConferenceEvent = () => {
     }
   };
 
+  const calculateTotalCost = (section) => {
+    let totalCost = 0;
+    if (section === "venue") {
+        venueItems.forEach((item) => {
+            totalCost += item.cost * item.quantity;
+        });
+    }
+    return totalCost;
+  };
+
+  const venueTotalCost = calculateTotalCost("venue");
+
+  const navigateToProducts = (idType) => {
+    if (idType == '#venue' || idType == '#addons' || idType == '#meals') {
+      if (showItems) { // Check if showItems is false
+        setShowItems(!showItems); // Toggle showItems to true only if it's currently false
+      }
+    }
+  }
+
   return (
     <>
       <navbar className="navbar_event_conference">
         <div className="company_logo">Conference Expense Planner</div>
         <div className="left_navbar">
           <div className="nav_links">
-            <a href="#venue">Venue</a>
-            <a href="#addons">Add-ons</a>
-            <a href="#meals">Meals</a>
+            <a href="#venue" onClick={() => navigateToProducts("#venue")}>Venue</a>
+            <a href="#addons" onClick={() => navigateToProducts("#addons")}>Add-ons</a>
+            <a href="#meals" oncClick={() => navigateToProducts("#meals")}>Meals</a>
           </div>
           <button
             className="details_button"
@@ -117,7 +137,7 @@ const MyConferenceEvent = () => {
                   </div>
                 ))}
               </div>
-              <div className="total_cost">Total Cost: </div>
+              <div className="total_cost">Total Cost: {venueTotalCost}</div>
             </div>
             <div id="addons" className="venue_container container_main">
               <div className="text">
