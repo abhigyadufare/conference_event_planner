@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import "./ConferenceEvent.css";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity } from "./venueSlice";
+import TotalCost from "./TotalCost";
 
 const MyConferenceEvent = () => {
   const [showItems, setShowItems] = useState(false);
   const venueItems = useSelector((state) => state.venue);
   const dispatch = useDispatch();
+
+  const handleToggleItems = () => {
+    console.log("handleToggleItems called");
+    setShowItems(!showItems);
+  }
 
   const handleAddToCart = (index) => {
     if (
@@ -155,7 +161,9 @@ const MyConferenceEvent = () => {
             </div>
           </div>
         ) : (
-          <div></div>
+          <div className="total_amount_detail">
+            <TotalCost totalCosts={totalCosts} handleClick={handleToggleItems} />
+          </div>
         )}
       </div>
     </>
