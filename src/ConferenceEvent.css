@@ -99,3 +99,78 @@ navbar {
     justify-content: center;
     
 }
+
+.venue_selection,.addons_selection , .meal_selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 90vw;
+    margin-left: 250px;
+}
+
+.venue_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 300px;
+}
+
+.venue_main .img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.venue_main .text {
+    font-size: 30px;
+    color: #333;
+}
+
+.quantity-value {
+    margin: 0 10px;
+}
+
+.button_container{
+    /* background-color: red; */
+    width:200px ;
+    display: flex;
+    gap: 20px;
+}
+
+.btn-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5291D9;
+    color: black;
+    border: none;
+    width: 10px;
+    height: 30px;
+     border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-warning {
+    background-color: #52D7D9;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+    color: black;
+    width: 10px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-disabled {
+    opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
+    cursor: not-allowed; /* Change cursor to indicate that the button is not clickable */
+}

@@ -14,11 +14,16 @@ const ConferenceEvent = () => {
     };
 
     const handleAddToCart = (index) => {
+        if (venueItems[index].name === "Auditorium Hall (Capacity:200)" && venueItems[index].quantity >= 3) {
+            return; 
+        }
         dispatch(incrementQuantity(index));
     };
 
     const handleRemoveFromCart = (index) => {
-        dispatch(decrementQuantity(index));
+        if (venueItems[index].quantity > 0) {
+            dispatch(decrementQuantity(index));
+        }
     }
 
     return (
@@ -31,7 +36,7 @@ const ConferenceEvent = () => {
                         <a href="#addons">Add-ons</a>
                         <a href="#meals">Meals</a>
                     </div>
-                    <button className="details_button">Show Details</button>
+                    <button className="details_button" onClick={handleToggleItems}>Show Details</button>
                 </div>
             </navbar>
             <div className="main_container">
@@ -52,17 +57,17 @@ const ConferenceEvent = () => {
                                         <div className="text">{item.name}</div>
                                         <div>${item.cost}</div>
                                         <div className="button_container">
-                                            {item.name === "Auditorium Hall (Capacity:200)" ? (
+                                            {venueItems[index].name === "Auditorium Hall (Capacity:200)" ? (
                                                 <>
                                                     <button
-                                                        className={item.quantity === 0 ? "btn-warning btn-disabled" : "btn-minus btn-warning"}
+                                                        className={venueItems[index].quantity === 0 ? "btn-warning btn-disabled" : "btn-minus btn-warning"}
                                                         onClick={() => handleRemoveFromCart(index)}
                                                     >
                                                         &#8211;
                                                     </button>
-                                                    <span>{item.quantity}</span>
+                                                    <span className="quantity-value">{venueItems[index].quantity}</span>
                                                     <button
-                                                        className={item.quantity === 3 ? "btn-success btn-disabled" : "btn-success btn-plus"}
+                                                        className={venueItems[index].quantity === 3 ? "btn-success btn-disabled" : "btn-success btn-plus"}
                                                         onClick={() => handleAddToCart(index)}
                                                     >
                                                         &#43;
@@ -71,16 +76,18 @@ const ConferenceEvent = () => {
                                             ) : (
                                                 <>
                                                     <button
-                                                        className={item.quantity === 0 ? "btn-warning btn-disabled" : "btn-warning btn-plus"}
+                                                        className={venueItems[index].quantity === 0 ? "btn-warning btn-disabled" : "btn-warning btn-plus"}
                                                         onClick={() => handleRemoveFromCart(index)}
                                                     >
                                                         &#8211;
                                                     </button>
-                                                    <span>{item.quantity}</span>
+                                                    <span className="quantity-value">{venueItems[index].quantity}</span>
                                                     <button
-                                                        className={item.quantity === 10 ? "btn-success btn-disabled" : "btn-success btn-plus"}
+                                                        className={venueItems[index].quantity === 10 ? "btn-success btn-disabled" : "btn-success btn-plus"}
                                                         onClick={handleAddToCart(index)}
-                                                    ></button>
+                                                    >
+                                                        &#43;
+                                                    </button>
                                                 </>
                                             )}
                                         </div>
