@@ -1,3 +1,13 @@
+navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    background-color:#133b6a;
+    color: white;
+    width: 100vw;
+}
+
 .navbar_event_conference {
     position: fixed;
     top: 1px;
@@ -12,6 +22,7 @@
 
 .nav_links {
     display: flex;
+    align-items: center;
     gap: 170px;
 }
 
@@ -32,6 +43,18 @@
   
 .nav_links a:hover {
     color: #ff9900;
+}
+
+.details_button {
+    padding: 8px 16px;
+    background-color: #EFC16B;
+    color: black;
+    /* border: 1px solid white; */
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* background-color: transparent; */
 }
 
 .main_container {
