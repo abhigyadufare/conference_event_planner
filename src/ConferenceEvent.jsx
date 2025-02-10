@@ -8,6 +8,8 @@ const MyConferenceEvent = () => {
   const [showItems, setShowItems] = useState(false);
   const venueItems = useSelector((state) => state.venue);
   const dispatch = useDispatch();
+  
+  const remainingAuditoriumQuantity = 3 - venueItems.find(item => item.name === "Auditorium Hall (Capacity:200)").quantity;
 
   const handleToggleItems = () => {
     console.log("handleToggleItems called");
@@ -103,7 +105,7 @@ const MyConferenceEvent = () => {
                           </span>
                           <button
                             className={
-                              item.quantity === 3
+                              remainingAuditoriumQuantity === 0
                                 ? "btn-success btn-disabled"
                                 : "btn-success btn-plus"
                             }
