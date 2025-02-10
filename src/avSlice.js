@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const avSlice = createSlice({
-    name: av,
+    name: "av",
     initialState: [
         {
         img: "https://pixabay.com/images/download/business-20031_640.jpg",
