@@ -85,6 +85,83 @@ const MyConferenceEvent = () => {
   const avTotalCost = calculateTotalCost("av");
   const mealsTotalCost = calculateTotalCost("meals");
 
+  const totalCosts = {
+    venue: venueTotalCost,
+    av: avTotalCost,
+    meals: mealsTotalCost,
+  };
+
+  const getItemsFromTotalCost = () => {
+    const items = [];
+
+    venueItems.forEach((item) => {
+        if (item.quantity > 0) {
+            items.push({...items, type: "venue"});
+        }
+    });
+
+    avItems.forEach((item) => {
+        if (item.quantity > 0 && 
+            !items.some((i) => i.name === item.name && i.type === "av")
+        ) {
+            items.push({...items, type: "av"});
+        }
+    });
+
+    mealsItems.forEach((item) => {
+        if (item.selected) {
+            const itemForDisplay = {...items, type: "meals"};
+            if (item.numberOfPeople) {
+                itemForDisplay.numberOfPeople = numberOfPeople;
+            }
+            items.push(itemForDisplay);
+        }
+    });
+    return items;
+  };
+
+  const items = getItemsFromTotalCost();
+
+  const ItemsDisplay = ({items}) => {
+    console.log(items);
+
+    return (
+        <>
+            <div className="display_box1">
+                {items.length === 0 && <p>No items selected</p>}
+                <table className="table_item_data">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Unit Cost</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {items.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.name}</td>
+                                <td>${item.cost}</td>
+                                <td>
+                                    {item.type === "meals" || item.numberOfPeople
+                                    ? `For ${numberOfPeople} people`
+                                    : item.quantity}
+                                </td>
+                                <td>
+                                    {item.type === "meals" || item.numberOfPeople
+                                    ? `${item.cost * numberOfPeople}`
+                                    : `${item.cost * item.quantity}`}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
+    )
+  };
+
   const navigateToProducts = (idType) => {
     if (idType == '#venue' || idType == '#addons' || idType == '#meals') {
       if (showItems) { // Check if showItems is false
@@ -241,7 +318,7 @@ const MyConferenceEvent = () => {
           </div>
         ) : (
           <div className="total_amount_detail">
-            <TotalCost totalCosts={totalCosts} handleClick={handleToggleItems} />
+            <TotalCost totalCosts={totalCosts} ItemsDisplay={() => <ItemsDisplay items={items} />} />
           </div>
         )}
       </div>
