@@ -96,7 +96,7 @@ const MyConferenceEvent = () => {
 
     venueItems.forEach((item) => {
         if (item.quantity > 0) {
-            items.push({...items, type: "venue"});
+            items.push({...item, type: "venue"});
         }
     });
 
@@ -104,13 +104,13 @@ const MyConferenceEvent = () => {
         if (item.quantity > 0 && 
             !items.some((i) => i.name === item.name && i.type === "av")
         ) {
-            items.push({...items, type: "av"});
+            items.push({...item, type: "av"});
         }
     });
 
     mealsItems.forEach((item) => {
         if (item.selected) {
-            const itemForDisplay = {...items, type: "meals"};
+            const itemForDisplay = {...item, type: "meals"};
             if (item.numberOfPeople) {
                 itemForDisplay.numberOfPeople = numberOfPeople;
             }
@@ -178,7 +178,7 @@ const MyConferenceEvent = () => {
           <div className="nav_links">
             <a href="#venue" onClick={() => navigateToProducts("#venue")}>Venue</a>
             <a href="#addons" onClick={() => navigateToProducts("#addons")}>Add-ons</a>
-            <a href="#meals" oncClick={() => navigateToProducts("#meals")}>Meals</a>
+            <a href="#meals" onClick={() => navigateToProducts("#meals")}>Meals</a>
           </div>
           <button
             className="details_button"
